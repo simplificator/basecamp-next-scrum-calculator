@@ -12,6 +12,5 @@
       "run_at": "document_idle",
       "js": ["jquery.js", "code.js"]
     }
-  ],
-  "update_url": "https://raw.github.com/simplificator/basecamp-next-scrum-calculator/master/dist/updates.xml"
+  ]
 }
