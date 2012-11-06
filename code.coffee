@@ -2,7 +2,14 @@ class ScrumCalculator
   overallTotal: 0
 
   constructor: ->
+    console.log 'Running Basecamp SCRUM Calculator'
+
     @buildContainer()
+
+    if $('section.todos').length == 0
+      @container.remove()
+      return
+
     @buildList()
 
     @todoLists().each (i, list) =>
@@ -29,7 +36,7 @@ class ScrumCalculator
     parseFloat(result[1])
 
   todoItems: (list) =>
-    $(list).closest('article.todolist').find('li.todo')
+    $(list).closest('article.todolist').find('ul.todos > li.todo')
 
   parsedTodoItem: (item) =>
     todo = $(item).find('span.content_for_perma').text()
@@ -40,7 +47,8 @@ class ScrumCalculator
   buildListItem: (list, listTotal, listBudget, missingEstimations) =>
     item = $('<li>').
       css('border-bottom', '1px solid #ddd').
-      css('padding', '0px 0px 5px 0px').
+      css('padding', '10px 20px 10px 20px').
+      css('margin', '0').
       css('cursor', 'pointer')
 
     if listBudget
@@ -53,7 +61,8 @@ class ScrumCalculator
         item.css('color', 'green')
 
     else
-      titleText = $(list).text() + ' - <strong>' + listTotal + 'h</strong>'
+      titleText = $(list).text()
+      titleText += ' - <strong>' + listTotal + 'h</strong>' if listTotal > 0.0
       item.css('color', '#888')
 
     item.html(titleText + '<br/>')
@@ -82,6 +91,7 @@ class ScrumCalculator
       css('top', '50px').
       css('right', '50px').
       css('padding', '20px').
+      css('min-height', 'auto').
       addClass('sheet')
 
     @container.append($('<h2>').
@@ -89,25 +99,42 @@ class ScrumCalculator
       css('margin-top', '0').
       css('padding-bottom', '10px'))
 
+    links = $('<div>').
+      css('margin', '10px -20px 0px').
+      css('padding-bottom', '10px').
+      css('border-bottom', '1px solid #ddd')
+    links.append($('<a>').
+      text('Aktualisieren').
+      css('cursor', 'pointer').
+      css('padding', '0px 20px').
+      click( () -> new ScrumCalculator() ))
+    links.append($('<a>').
+      text('Schliessen').
+      css('cursor', 'pointer').
+      css('padding', '0px 20px').
+      click( () => @destroy() ))
+    @container.append($('<small>').css('color', '#aaa').append(links))
+
     @container
 
   buildList: =>
-    @list = $('<ul>').css('margin', '0')
+    @list = $('<ul>').css('margin', '0px -20px')
     @container.append(@list)
 
   buildTotalListItem: =>
     item = $('<li>').
-      css('padding', '20px 0px 0px 0px').
+      css('padding', '20px 20px 0px').
       css('margin', '0');
 
     item.html('<strong>Total: ' + @overallTotal + 'h</strong>')
 
-    close = $('<a>').text('Schliessen').css('float', 'right').
-      css('color', '#AAA').css('cursor', 'pointer').
-      click( () => @container.remove())
-
-    item.append($('<small>').append(close))
     @list.append(item)
 
+  destroy: =>
+    clearInterval(window.scrumCalculatorInterval)
+    @container.remove()
 
-new ScrumCalculator()
+$(document).ready ->
+  window.scrumCalculatorInterval = setInterval () ->
+    new ScrumCalculator()
+  , 1000
