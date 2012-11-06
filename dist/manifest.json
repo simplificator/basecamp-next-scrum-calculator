@@ -1,0 +1,17 @@
+{
+  "name": "Basecamp SCRUM Calculator",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "Basecamp SCRUM Calculator",
+  "permissions": [
+    "tabs", "https://basecamp.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://basecamp.com/*"],
+      "run_at": "document_idle",
+      "js": ["jquery.js", "code.js"]
+    }
+  ],
+  "update_url": "https://raw.github.com/simplificator/basecamp-next-scrum-calculator/master/dist/updates.xml"
+}

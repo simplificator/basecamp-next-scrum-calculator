@@ -9,7 +9,7 @@ Create a bookmark in your browser and add the following code as the address:
     javascript: (function() {
       s = document.createElement('script');
       s.setAttribute('type', 'text/javascript');
-      s.setAttribute('src', 'https://raw.github.com/simplificator/basecamp-next-scrum-calculator/master/code.js');
+      s.setAttribute('src', 'https://raw.github.com/simplificator/basecamp-next-scrum-calculator/master/dist/code.js');
       document.body.appendChild(s);
     })();
 
