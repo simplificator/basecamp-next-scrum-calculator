@@ -1,12 +1,24 @@
 // add this code as a bookmark and use it on a basecamp project page
 
-javascript: if ($('body').find('ul#calculation').length > 0) {
-  var list = $('body').find('ul#calculation');
-  list.empty();
+javascript: if ($('body').find('#calculation').length > 0) {
+  var container = $('body').find('#calculation');
+  container.empty();
 } else {
-  var list = $('<ul>').attr('id', 'calculation');
-  $('body').append(list);
+  var container = $('<div>').attr('id', 'calculation');
+  $('body').append(container);
 }
+
+container.css('position', 'fixed').
+          css('z-index', '1000').
+          css('top', '50px').
+          css('right', '50px').
+          css('padding', '20px').
+          addClass('sheet');
+
+container.append($('<h2>').text('Übersicht').css('margin-top', '0'));
+
+var list = $('<ul>').css('margin', '0');
+container.append(list);
 
 $('span.unlinked_title').each(function(i, title) {
   $(title).closest('article.todolist').find('ul.todos').each(function(i, ul) {
@@ -25,11 +37,4 @@ $('span.unlinked_title').each(function(i, title) {
     if (missing > 0 && total > 0.0) item.append($('<small>').text(missing + ' nicht geschätzt').css('color', '#AAA'));
     list.append(item);
   });
-
-  list.css('position', 'fixed');
-  list.css('top', '50px');
-  list.css('right', '50px');
-  list.css('background-color', 'white');
-  list.css('padding', '25px');
-  list.css('border', '2px solid black');
 });
