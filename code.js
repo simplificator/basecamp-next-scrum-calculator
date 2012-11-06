@@ -14,11 +14,13 @@ container.
   css('padding', '20px').
   addClass('sheet');
 
-container.append($('<h2>').text('Übersicht').css('margin-top', '0'));
+container.append($('<h2>').text('Übersicht').css('margin-top', '0').css('padding-bottom', '10px'));
 
 var list = $('<ul>').
   css('margin', '0');
 container.append(list);
+
+var overallTotal = 0;
 
 $('span.unlinked_title').each(function(i, title) {
   var result = $(title).text().match(/([0-9.]+)h$/);
@@ -38,6 +40,8 @@ $('span.unlinked_title').each(function(i, title) {
         missing += 1;
       }
     });
+
+    overallTotal += total;
 
     var item = $('<li>').
       css('border-bottom', '1px solid #ddd').
@@ -67,3 +71,15 @@ $('span.unlinked_title').each(function(i, title) {
     list.append(item);
   });
 });
+
+var item = $('<li>').
+  css('padding', '20px 0px 0px 0px').
+  css('margin', '0');
+item.html('<strong>Total: ' + overallTotal + 'h</strong>');
+
+var close = $('<a>').text('Schliessen').css('float', 'right').
+  css('color', '#AAA').css('cursor', 'pointer').
+  click(function() { $('#calculation').remove(); });
+item.append($('<small>').append(close));
+
+list.append(item);
