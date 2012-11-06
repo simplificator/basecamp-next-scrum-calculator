@@ -1,5 +1,3 @@
-// add this code as a bookmark and use it on a basecamp project page
-
 javascript: if ($('body').find('#calculation').length > 0) {
   var container = $('body').find('#calculation');
   container.empty();
