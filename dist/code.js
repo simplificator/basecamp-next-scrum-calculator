@@ -162,7 +162,9 @@
   })();
 
   $(document).ready(function() {
-    return new ScrumCalculator();
+    return window.scrumCalculatorInterval = setInterval(function() {
+      return new ScrumCalculator();
+    }, 1000);
   });
 
 }).call(this);
