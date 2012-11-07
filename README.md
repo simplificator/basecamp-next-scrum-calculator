@@ -15,4 +15,4 @@ Create a bookmark in your browser and add the following code as the address:
 
 ## Example
 
-![Screesnhot](http://tardis1.tinygrab.com/grabs/d3a1bfce725c1e246e89ea202e269ac2fd8c8f4328.png)
+![Screesnhot](http://tardis1.tinygrab.com/grabs/d3a1bfce724df3361d99347fb716313a16e3938890.png)
