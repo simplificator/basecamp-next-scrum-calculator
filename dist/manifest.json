@@ -4,7 +4,7 @@
   "manifest_version": 2,
   "description": "Basecamp SCRUM Calculator",
   "permissions": [
-    "tabs", "https://basecamp.com/*"
+    "https://basecamp.com/*"
   ],
   "content_scripts": [
     {
