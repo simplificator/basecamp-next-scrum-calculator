@@ -1,8 +1,8 @@
 {
-  "name": "Basecamp SCRUM Calculator",
-  "version": "1.0.1",
+  "name": "Basecamp Next SCRUM Calculator",
+  "version": "1.0.2",
   "manifest_version": 2,
-  "description": "Basecamp SCRUM Calculator",
+  "description": "Basecamp Next SCRUM Calculator",
   "permissions": [
     "https://basecamp.com/*"
   ],
